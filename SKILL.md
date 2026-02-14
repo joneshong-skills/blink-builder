@@ -123,6 +123,8 @@ For detailed troubleshooting with root cause analysis: read `references/troubles
 
 ## Key Files in Fork
 
+These files live in the fork repo (`~/Blink-Shell-GPL-Builder/`), **not** in this skill directory:
+
 | File | Purpose |
 |------|---------|
 | `setup.sh` | One-click build and install (auto/manual/dry-run) |
@@ -130,8 +132,8 @@ For detailed troubleshooting with root cause analysis: read `references/troubles
 | `reinstall-blink.sh` | Quick rebuild and reinstall |
 | `reinstall-blink-auto.sh` | Silent rebuild for launchd auto-resign |
 | `patches/xcode26-free-team.patch` | All source modifications for free signing |
-| `templates/developer_setup.xcconfig.template` | Xcode build config template |
-| `templates/com.blink-reinstall.plist.template` | launchd plist for auto-resign |
+| `developer_setup.xcconfig.template` | Xcode build config template (in `templates/`) |
+| `com.blink-reinstall.plist.template` | launchd plist for auto-resign (in `templates/`) |
 
 ## Free Sideloading Constraints (2026)
 
