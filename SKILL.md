@@ -16,6 +16,15 @@ Build and sideload Blink Shell (iOS terminal with Mosh/SSH) using free Apple Per
 - Upstream: https://github.com/blinksh/blink (GPL v3)
 - Tested version: v18.3.0
 
+## Agent Delegation
+
+Delegate Xcode build monitoring and browser-based configuration to the `browser` agent. Use it to watch build progress in the browser or Simulator, and to automate any web-based steps such as Apple Developer portal configuration.
+
+```
+Main context (version checks, patch management, install coordination)
+  └─ Task(subagent_type: browser, prompt: "Monitor the Xcode build log at ~/Blink-Shell-GPL-Builder/build.log, polling every 10s until 'INSTALL SUCCEEDED' or an error appears, then return the last 20 lines.")
+```
+
 ## Pre-Flight: Version & Health Check
 
 **CRITICAL: Run these checks EVERY TIME this skill is invoked, BEFORE doing anything else.**
