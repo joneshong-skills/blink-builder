@@ -1,11 +1,8 @@
 ---
 name: blink-builder
-description: >-
-  This skill should be used when the user asks to "build Blink Shell", "install Blink on iPhone",
-  "sideload Blink", "Blink Shell GPL build", "build iOS terminal app", "建置 Blink",
-  "安裝 Blink 到 iPhone", "Blink 編譯", "free sideload iOS app", mentions Blink Shell,
-  or discusses building iOS apps from GPL source with free Apple developer signing.
+description: "blink, build, builder, shell, install, iphone, sideload, 建置 Blink, 安裝 Blink 到 iPhone"
 version: 0.1.0
+disable-model-invocation: true
 ---
 
 # Blink Shell GPL Builder
@@ -18,11 +15,12 @@ Build and sideload Blink Shell (iOS terminal with Mosh/SSH) using free Apple Per
 
 ## Agent Delegation
 
-Delegate Xcode build monitoring and browser-based configuration to the `browser` agent. Use it to watch build progress in the browser or Simulator, and to automate any web-based steps such as Apple Developer portal configuration.
+Delegate web-based steps (Apple Developer portal configuration) to the `browser` agent. For Xcode build monitoring, use the Bash tool with `run_in_background: true` on build.log — do NOT poll with a browser agent (violates the agents.md NO-POLLING hard rule).
 
 ```
 Main context (version checks, patch management, install coordination)
-  └─ Task(subagent_type: browser, prompt: "Monitor the Xcode build log at ~/Blink-Shell-GPL-Builder/build.log, polling every 10s until 'INSTALL SUCCEEDED' or an error appears, then return the last 20 lines.")
+  ├─ Bash(run_in_background: true): watch ~/Blink-Shell-GPL-Builder/build.log for 'INSTALL SUCCEEDED' or errors (event-driven, no sleep-poll loop; system notifies on exit)
+  └─ Task(subagent_type: browser, prompt: "Automate Apple Developer portal web configuration steps ...")
 ```
 
 ## Pre-Flight: Version & Health Check
