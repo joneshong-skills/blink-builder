@@ -2,7 +2,6 @@
 name: blink-builder
 description: "blink, build, builder, shell, install, iphone, sideload, 建置 Blink, 安裝 Blink 到 iPhone"
 version: 0.1.0
-disable-model-invocation: true
 ---
 
 # Blink Shell GPL Builder
